@@ -116,7 +116,7 @@ h3{ line-height:24px; font-size:20px; padding-top:25px; margin-bottom:37px;}
 #div3 .div34_content .timeBox div.four{ left:608px;  margin-top:-175px;}
 #div3 .div34_content .timeBox div.seven{left:162px; margin-top:-175px;}
 #div3 .div34_content .timeBox div.eleven{ left:608px;  margin-top:-205px;}
-#div3 .div34_content .timeBox div.thirteen{left:162px; margin-top:-275px;}
+#div3 .div34_content .timeBox div.thirteen{left:162px; /*margin-top:-275px;*/    margin-top: -160px;}
 #div3 .div34_content .timeBox div.ninenine i{ position:absolute; top:-100px; left:285px; width:150px; height:150px; display:block; background:url(../images/our_story_sprite.png)  no-repeat;}
 #div3 .div34_content .timeBox div.nineseven h5,#div3 .div34_content .timeBox div.nineseven p,#div3 .div34_content .timeBox div.four h5,#div3 .div34_content .timeBox div.four p,#div3 .div34_content .timeBox div.eleven h5,#div3 .div34_content .timeBox div.eleven p{ padding-left:154px;}
 #div3 .div34_content .timeBox div span{ margin-top:10px;}
