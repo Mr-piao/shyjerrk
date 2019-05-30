@@ -51,7 +51,7 @@ body{ height:100%;}
     color: #555;
     border-bottom: none;
     line-height: 1.2;
-    vertical-align: top;}
+    vertical-align: top;animation: mo 2s infinite;}
 
 #div2	a::before
 		{
@@ -71,6 +71,28 @@ body{ height:100%;}
 #div2	a:hover::before {
 		    visibility: visible;
 		    transform: scaleX(1);
+		}
+@keyframes mo{
+			0%{
+				right: 30px;
+			}
+			50%{
+				right: 60px;
+			}
+			100%{
+				right: 20px;
+			}
+		}
+@-webkit-keyframes  mo{
+			0%{
+				right: 30px;
+			}
+			50%{
+				right: 60px;
+			}
+			100%{
+				right: 20px;
+			}
 		}
 #div3{ width:100%;  position:absolute; top:557px; z-index:80;padding-top:48px; overflow:hidden;}
 #div3 div{ position:relative;}
