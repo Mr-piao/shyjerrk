@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>360全景展示</title>
+    <style>
+    #img1{width:640px;height:378px;position:absolute;left:50%;top:50%;margin-top:-189px;margin-left:-320px;}
+    </style>
+</head>
+<body>
+  <img src="img/m(0).jpg" id="img1">
+</body>
+<script>
+    window.onload=function(){
+        var x=0;
+        var oImg=document.getElementById('img1');
+        for(var i=1;i<77;i++){
+            var img=new Image();
+            img.src="img/m("+i+").jpg";
+            img.style.display='none';
+            document.body.appendChild(img);
+        }
+        document.onmousedown=function(e){
+            var e=e||event;
+            var disx= e.clientX-x;
+            document.onmousemove=function(e){
+                var e=e||event;
+                x=e.clientX-disx;
+                var l=parseInt(-x/10);
+                if(l>0){
+                    l=l%77;
+                }
+                else{
+                    l=l+-Math.floor(l/77)*77;
+                }
+                oImg.src="img/m("+l+").jpg";
+                return false;
+            }
+            document.onmouseup=function(){
+                document.onmousemove=null;
+                document.onmouseup=null;
+            }
+            return false;
+        }
+    }
+</script>
+</html>

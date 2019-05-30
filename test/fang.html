@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜效果</title>
+    <style>
+
+        *{margin:0;padding:0;}
+        #div1{width:420px;height:420px;border:1px solid #FF3300;position:relative;cursor:move;}
+        #div1 img{width:418px;height:418px;}
+        #small{width:200px; height:200px;background:#cccccc;opacity:0.3;filter:alpha(opacity:30);position:absolute;border:1px solid #cccccc;display: none;cursor:move;}
+        #mark{width:422px;height:422px;position:absolute;left:0;top:0;z-index: 2;background:red; filter:alpha(opacity:0); opacity:0;}
+        #div2{width:422px;height:422px;position:absolute;left:430px;background:red;top:0;border:1px solid black;overflow: hidden;display: none;}
+        #div2 img{position:absolute;}
+
+    </style>
+</head>
+<body>
+
+     <div id="div1">
+         <img src="img/iphone1.jpg" />
+         <div id="small"></div>
+         <div id="mark"></div>
+     </div>
+     <div id="div2">
+         <img src="img/iphone2.jpg" id="big">
+     </div>
+
+</body>
+<script>
+    window.onload=function(){
+        var oMark=document.getElementById("mark");
+        var oSmall=document.getElementById("small");
+        var oDiv1=document.getElementById('div1');
+        var oDiv2=document.getElementById('div2');
+        var oBig=document.getElementById('big');
+        oMark.onmouseover=function(){
+            oSmall.style.display='block';
+            oDiv2.style.display='block';
+        }
+        oMark.onmouseout=function(){
+            oSmall.style.display='none';
+            oDiv2.style.display='none';
+        }
+        oMark.onmousemove=function(e){
+            var e=e||event;
+            var l=e.clientX-oSmall.offsetWidth/2;
+            var t=e.clientY-oSmall.offsetHeight/2;
+            if(l<0){
+                l=0;
+            }else if(l>oDiv1.offsetWidth-oSmall.offsetWidth){
+                l=oDiv1.offsetWidth-oSmall.offsetWidth;
+            }
+            if(t<0){
+                t=0;
+            }else if(t>oDiv1.offsetHeight-oSmall.offsetHeight){
+                t=oDiv1.offsetHeight-oSmall.offsetHeight;
+            }
+            var scalex=l/(oDiv1.offsetWidth-oSmall.offsetWidth);
+            var scaley=t/(oDiv1.offsetHeight-oSmall.offsetHeight);
+            oSmall.style.left= l+'px';
+            oSmall.style.top= t+'px';
+            oBig.style.left=-scalex*(oBig.offsetWidth-oDiv2.offsetWidth)+'px';
+            oBig.style.top=-scaley*(oBig.offsetHeight-oDiv2.offsetHeight)+'px';
+
+        }
+    }
+</script>
+</html>

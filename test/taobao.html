@@ -1,0 +1,110 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>无标题文档</title>
+	<script src="jsGo.js"></script>
+	<style>
+		*{padding:0px;margin:0px;}
+		#p-box{width:520px;height:280px;margin:100px auto;position:relative;border:1px solid red;overflow:hidden;}
+		#p-box ul{position:absolute;left:0px;top:0px;}
+		#p-box ul li{float:right;list-style:none;}
+		#p-box p{margin:0 auto;position:absolute;bottom:4px;left:0px;width:100%;text-align:center;z-index:2;}
+		img{display:block;}
+		#p-box p span{border-radius:50%;padding:4px 8px;cursor:pointer;color:#f60;background:#ccc;margin-right:4px;}
+		#p-box p span.active{background:#F90;color:white}
+		#p-box a{display:block;position:absolute;opacity:0.5;filter:alpha(opacity:50);width:50px;top:0;font-size:50px;color:red;text-align:center;height:50px;top:10%;background:#ccc;top:115px;display:none;}
+		#p-box a.l{left:0}
+		#p-box a.r{right:0}
+		a{text-decoration:none;}
+	</style>
+</head>
+
+<body>
+<div id="p-box">
+	<ul>
+		<li><img src="img/p1.jpg"></li>
+		<li><img src="img/p2.jpg"></li>
+		<li><img src="img/p3.jpg"></li>
+		<li><img src="img/p1.jpg"></li>
+		<li><img src="img/p5.jpg"></li>
+	</ul>
+	<p>
+		<span class="active">1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+		<span>5</span>
+	</p>
+	<a href="javascript:;" class="l"><</a>
+	<a href="javascript:;" class="r">></a>
+</div>
+<script>
+	window.onload=function(){
+		var oBox=document.getElementById("p-box");
+		var oUl=oBox.getElementsByTagName("ul")[0];
+		var aLi=oUl.getElementsByTagName("li");
+		var oP=oBox.getElementsByTagName("p")[0];
+		var aSpan=oP.getElementsByTagName("span");
+		var iLen=aLi.length;
+		var iWidth=aLi[0].offsetWidth;
+		var aA=oBox.getElementsByTagName("a");
+		var timer=null;
+		var num=0;
+		oUl.style.width=aLi[0].offsetWidth*iLen+'px';
+		timer=setInterval(autoPlay,2000)
+		for(var i=0;i<aSpan.length;i++){
+			aSpan[i].index=i;
+			aSpan[i].onmouseover=function(){
+				for(var i=0;i<aSpan.length;i++){
+					aSpan[i].className='';
+				}
+				this.className='active';
+				oUl.style.opacity=0;
+				move(oUl,{left:-this.index*iWidth,opacity:100});
+				num = this.index;
+			}
+		}
+		function autoPlay(){
+			num++;
+			if(num==aSpan.length){
+				num=0;
+			}
+			for(var i=0;i<aSpan.length;i++){
+				aSpan[i].className='';
+			}
+			oUl.style.opacity=0;
+			aSpan[num].className='active';
+			move(oUl,{left:-num*iWidth,opacity:100});
+		}
+		aA[0].onclick = function () {
+			autoPlay()
+		};
+		aA[1].onclick = function () {
+			num--;
+			if(num==-1){
+				num=aSpan.length-1;
+			}
+			for(var i=0;i<aSpan.length;i++){
+				aSpan[i].className=''
+			}
+			oUl.style.opacity=0;
+			aSpan[num].className='active';
+			move(oUl,{left:-num*iWidth,opacity:100});
+		};
+		oBox.onmouseover=function(){
+			clearInterval(timer)
+			aA[0].style.display='block';
+			aA[1].style.display='block';
+		}
+		oBox.onmouseout=function(){
+			timer=setInterval(autoPlay,2000)
+			aA[0].style.display='none';
+			aA[1].style.display='none';
+		}
+
+	}
+</script>
+</body>
+</html>

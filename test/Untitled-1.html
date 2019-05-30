@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>移动端</title>
+<style>
+*{margin:0;padding:0;}
+div{width:100px;height:100px;background:red;float:left;margin-right:10px;}
+</style>
+</head>
+
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+
+window.onload=function(){
+	var aDiv=document.getElementsByTagName("div");
+	
+	for(var i=0;i<aDiv.length;i++){
+		aDiv[i].index=i;
+		aDiv[i].onclick=(function(i){
+			alert(i)
+		})
+	}
+}
+</script>
+</body>
+</html>

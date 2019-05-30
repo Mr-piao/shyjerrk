@@ -1,0 +1,75 @@
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>手风琴</title>
+<script src="jsGo.js"></script>
+<style>
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+body { background: #f6f9fc; }
+#div1{width: 638px; height: 250px; border: 1px solid #ccc; margin: 50px auto 0; overflow:hidden;}
+#div1 ul{width:660px;height:250px;background:url(image/f3.png) no-repeat;background-size:638px 250px;}
+#div1 ul li{width: 22px; height: 250px; float: left; position: relative; overflow:hidden;transition:.5s;}
+#div1 ul li span{width: 21px; height: 210px; padding-top: 40px; border-right: 1px solid #fff; position: absolute; top: 0; right: 0; color: #fff; font-size: 16px; text-align: center; cursor: pointer; background:#6C3;}
+#div1 ul li:hover{width:530px;}
+<!--#div1 ul li.active{width:530px;}-->
+#div1 ul li img{width:530px;height:250px;float:left}
+
+</style>
+</head>
+<body>
+<div id="div1">
+   <ul>
+     <li class="active">  
+     	<span>第一张</span>
+       <img src="image/f1.png" alt="QQ54467121" />
+    	
+     </li>
+     <li> 
+     	<span>第二张</span>
+       <img src="image/f2.jpg" alt="QQ54467121" />
+      
+     </li>
+     <li>
+   	   <span>第三张</span>
+       <img src="image/f1.png" alt="QQ54467121" />
+       
+     </li>
+     <li>  
+     	<span>第四张</span>
+       <img src="image/f1.png" alt="QQ54467121" />
+    	
+     </li>
+     <li> 
+     	<span>第五张</span>
+       <img src="image/f2.jpg" alt="QQ54467121" />
+      
+     </li>
+     <li>
+   	   <span>第六张</span>
+       <img src="image/f1.png" alt="QQ54467121" />
+       
+     </li>
+   </ul>
+</div>
+
+</body>
+<script>
+window.onload=function (){
+	var oDiv=document.getElementById("div1");
+	var aSpan=oDiv.getElementsByTagName('span');
+	var arr=[];
+	for(var i=0;i<aSpan.length;i++){
+		aSpan[i].index=i;
+		document.title=i;
+		aSpan[i].onmousemove=function(){
+				for(var i=0;i<aSpan.length;i++){
+					aSpan[i].parentNode.className='';
+				}
+		}
+	}
+}
+</script>
+</html>

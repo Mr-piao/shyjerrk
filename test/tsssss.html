@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>360全景展示</title>
+    <style>
+        #div1{background:red;width:100px;height:100px;position:absolute;left:0;}
+        #div2{background:black;width:1px;height:400px;position:absolute;left:500px;}
+    </style>
+</head>
+<body>
+<button id="btn">开始</button>
+<div id="div1"></div>
+<div id="div2"></div><br><br><br><br><br><br><br><br>
+<div>
+    弹性公式：
+    速度+=(目标点-当前值)/6;;7;8
+    速度*=速度*摩擦系数;0.7   -----   0.75
+</div>
+</body>
+<script>
+    window.onload=function(){
+        var oBtn=document.getElementById('btn');
+        var oDiv=document.getElementById('div1');
+        var timer=null;
+        var speed=0;
+        oBtn.onclick=function(){
+            move(oDiv,500)
+        }
+        function move(obj,target){
+            clearInterval(timer);
+            timer=setInterval(function(){
+                speed+=(target-obj.offsetLeft)/5;
+                speed*=0.7;
+                if(Math.abs(speed)<=1&&(target-obj.offsetLeft)<=1){
+                    clearInterval(timer);
+                    obj.style.left=target+'px';
+                    speed=0;
+                }
+                oDiv.style.left=oDiv.offsetLeft+speed+'px';
+            },30)
+        }
+    }
+</script>
+</html>

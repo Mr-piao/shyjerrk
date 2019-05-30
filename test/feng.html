@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#box{width:60px;height:60px;position:fixed;right:20px;bottom:20px;}
+#feng{width:60px;height:60px;position:absolute;left:0px;top:0;border-radius:25px;background:url(image/feng.jpg) no-repeat;-webkit-transition:1s;-moz-transition:1s;transition:1s;cursor:pointer;}
+#menu{height:42px;width:42px;position:relative;margin:4px;}
+#menu img{border-radius:21px;position:absolute;left:0;top:0;transition:.5s all ease;cursor:pointer;}
+h3{text-align:center;color:#F63;}
+</style>
+</head>
+
+<body>
+  <h3>去点它,看看效果</h3>
+<div id="box">
+  <div id="menu">
+    <img src="image/clos.png">
+    <img src="image/full.png">
+    <img src="image/open.png">
+    <img src="image/prev.png">
+    <img src="image/refresh.png">
+  </div>
+  <div id="feng"></div>
+</div>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById("feng");
+	var aImg=document.getElementsByTagName("img");
+	var onOff=true;
+	var r=-150;
+	oBtn.onclick=function(){
+	   	
+		if(onOff){
+			this.style.transform='rotate(-360deg)';
+			for(var i=0;i<aImg.length;i++){
+				var LT=getLT(r,90/4*i);
+				
+				aImg[i].style.transition="0.5s"+i*1080+"ms";
+				aImg[i].style.left=LT.l+'px';
+				aImg[i].style.top=LT.t+'px';
+			}
+			
+		}else{
+			this.style.transform='rotate(0deg)';
+			for(var i=0;i<aImg.length;i++){
+				aImg[i].style.left=0;
+				aImg[i].style.top=0;
+			}
+		}
+		onOff=!onOff;
+	}
+	function getLT(r,deg){
+		
+		//角度的对边=斜边*sin角度
+        //角度邻边=斜边*cos角度  百度作业帮
+		//弧度=角度*PI/180;
+		return {l:Math.round(r*Math.sin(deg*Math.PI/180)),t:Math.round(r*Math.cos(deg*Math.PI/180))}
+	}
+	
+	/*function getLT(r,deg){
+		//角度的对边=斜边*sin角度
+        //角度邻边=斜边*cos角度
+		//弧度=角度*PI/180;
+		return {l:Math.round(Math.sin(deg*Math.PI/180)*r),t:Math.round(Math.cos(deg*Math.PI/180)*r)}
+	}*/
+}
+</script>
+</body>
+</html>

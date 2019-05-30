@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>间歇性无缝滚动</title>
+<style>
+*{padding:0;margin:0;}
+body{background:#f1f1f1;}
+h3{text-align:center;color:#F60;margin:20px auto;}
+#box{width:200px;height:120px;position:relative;border:3px solid #F99;margin:0 auto;overflow:hidden;}
+p{width:200px;height:30px;line-height:30px;text-align:center;background:#660;color:#FF6;border-radius:10px 10px 0 0;overflow:hidden;margin:0 auto;border:3px solid #F99;}
+#box ul{width:100%;height:100%;position:absolute;left:0;top:0px;}
+#box ul li{height:24px;line-height:24px;text-align:center;list-style:none;}
+#box ul li a{text-decoration:none;color:#633;display:block;color:#F60;}
+</style>
+</head>
+
+<body>
+<h3>间歇性无缝滚动</h3>
+<p>这里是消息列表</p>
+<div id='box'>
+   <ul id="ul1">
+     <li><a href="javascript:;">消息列表1111111111111</a></li>
+     <li><a href="javascript:;">消息列表2222222222222</a></li>
+     <li><a href="javascript:;">消息列表3333333333333</a></li>
+     <li><a href="javascript:;">消息列表4444444444444</a></li>
+     <li><a href="javascript:;">消息列表5555555555555</a></li>
+   </ul>
+   <ul id="ul2"></ul>
+</div>
+
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("box");
+	var oUl1=document.getElementById("ul1");
+	var oUl2=document.getElementById("ul2");
+	var aLi=oUl1.getElementsByTagName("li");
+	var speed=1;
+	var timer=null;
+	oUl1.innerHTML+=oUl1.innerHTML;
+	oUl1.style.height=aLi[0].offsetHeight*aLi.length+'px';
+	document.title='d'+oDiv.offsetHeight+':'+'nei'+oUl1.offsetHeight
+	function auto(){
+		if(oUl1.offsetTop>0){
+			oUl1.style.top=-oUl1.offsetHeight/2+'px';
+		}
+		oUl1.style.top=oUl1.offsetTop+speed+'px';
+		if(oUl1.offsetTop%24==0){
+			clearInterval(timer)
+			setTimeout(au,1000)
+		}
+	}
+	function au(){
+		//oUl1.style.top=oUl1.offsetTop-speed+'px';
+		timer=setInterval(auto,30)
+	}
+	timer=setInterval(auto,30)
+}
+</script>
+</body>
+</html>

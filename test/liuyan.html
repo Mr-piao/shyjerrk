@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jsGo.js"></script>
+<style>
+#box{width:80%;text-align:center;}
+#box textarea{font-size:16px;}
+#box ul{width:300px;height:200px;overflow:hidden;margin:0 auto;border:1px solid #033;}
+#box li{line-height:28px;border-bottom:1px dashed #FF6666;padding:5px;word-break:break-all;list-style:none;width:80%;overflow:hidden;}
+</style>
+</head>
+
+<body>
+<div id="box">
+  <textarea rows="10" cols="40" ></textarea><br>
+  <button>留言</button>
+  <button>清空</button>
+  <ul>
+  </ul>
+</div>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById("box");
+	var oText=oBox.getElementsByTagName('textarea')[0];
+	var oBtn=oBox.getElementsByTagName('button')[0];
+	var oClear=oBox.getElementsByTagName('button')[1];
+	var oUl=oBox.getElementsByTagName('ul')[0];
+	oText.focus();
+	oClear.onclick=function(){
+		oUl.innerHTML='';
+		oText.focus();
+	}
+	oBtn.onclick=function(){
+		var oLi=document.createElement("li");
+		var aLi=document.getElementsByTagName("li");
+		if(oText.value==''){
+			oText.focus();
+			return false;
+		}else{
+			oLi.innerHTML=oText.value;
+			if(aLi.length>0){
+				oUl.insertBefore(oLi,aLi[0])
+			}else{
+				oUl.appendChild(oLi);
+			}
+			var iHeight=parseInt(getStyle(oLi,'height'));
+			oLi.style.height=0;
+			oLi.style.opacity=0;
+			oLi.style.filter='alpha(opacity:0)';
+			move(oLi,{height:iHeight,opacity:100})
+			oText.value='';
+		}
+		oText.focus();
+	}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jsGo.js" ></script>
+
+<style>
+img{width:200px;height:150px;}
+#ul1{margin:40px auto;position:relative;width:680px;height:520px;border:1px solid #3C6;}
+#ul1 li{list-style:none;width:200px;height:150px;margin:10px;float:left;}
+.active{border:1px dashed #FF0000;}
+p{text-align:center;font-size:20px;color:red;margin-top:20px;}
+#ul2{width:850px;margin:0 auto;}
+#ul2 li{float:left;list-style:none;margin:4px;border:1px solid #F99;}
+h3{text-align:center;font-size:18px;font-family:Arial, Helvetica, sans-serif;color:#f60;}
+
+#nav{margin:0 auto;text-align:center;width:100%;background:#ccc;border-radius:10px;height:30px;position:relative;z-index:99999;}
+#nav a{color:#FF0;text-decoration:none;}
+#nav li a:hover{text-decoration:undeline;}
+#nav li{width:102px;display:inline-block;list-style:none;font-family:Georgia, "Times New Roman", Times, serif;line-height:30px;background:#699;border-radius:30%;z-index:999;margin-left:2px;text-align:center;}
+#nav ul{position:absolute;left:0;top:0}
+#btn{display:block;margin:50px auto 0;height:30px;background:darksalmon;outline: none;color:white;}
+</style>
+</head>
+<body>
+<h3>拖拽下面图片看看效果。鼠标滚动时注意导航条的位置变化</h3>
+<button id="btn">随机交换图片位置</button>
+    <ul id="nav">
+      <div id="mark">
+      </div>
+      <li><a href="liuyan.html" target="_blank">留言板效果</a></li>
+      <li><a href="taobao.html" target="_blank">仿淘宝幻灯片</a></li>
+      <li><a href="iphone.html" target="_blank">仿iPhone手机</a></li>
+      <li><a href="liuyan.html" target="_blank">留言板效果</a></li>
+      <li><a href="taobao.html" target="_blank">仿淘宝幻灯片</a></li>
+      <li><a href="">留言板效果</a></li>
+    </ul>
+<ul id='ul1'>
+  <li><img src="img/z1.jpg" /></li>
+  <li><img src="img/z2.jpg" /></li>
+  <li><img src="img/z3.jpg" /></li>
+  <li><img src="img/z4.jpg" /></li>
+  <li><img src="img/z5.jpg" /></li>
+  <li><img src="img/z6.jpg" /></li>
+  <li><img src="img/z7.jpg" /></li>
+  <li><img src="img/z8.jpg" /></li>
+  <li><img src="img/z1.jpg" /></li>
+</ul>
+<p>以下图片全部为按需加载（可以清理缓存查看一下）</p>
+<ul id="ul2">
+  <li><img src="image/loading.gif" _src="image/p0.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p6.png"></li>
+  <li><img src="image/loading.gif" _src="image/p7.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p8.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p9.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p1.png"></li>
+  <li><img src="image/loading.gif" _src="image/p2.png"></li>
+  <li><img src="image/loading.gif" _src="image/p3.png"></li>
+  <li><img src="image/loading.gif" _src="image/p4.png"></li>
+  <li><img src="image/loading.gif" _src="image/p5.png"></li>
+  <li><img src="image/loading.gif" _src="image/p0.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p6.png"></li>
+  <li><img src="image/loading.gif" _src="image/p7.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p8.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p9.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p1.png"></li>
+  <li><img src="image/loading.gif" _src="image/p2.png"></li>
+  <li><img src="image/loading.gif" _src="image/p3.png"></li>
+  <li><img src="image/loading.gif" _src="image/p4.png"></li>
+  <li><img src="image/loading.gif" _src="image/p5.png"></li>
+  <li><img src="image/loading.gif" _src="image/p0.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p6.png"></li>
+  <li><img src="image/loading.gif" _src="image/p7.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p8.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p9.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p1.png"></li>
+  <li><img src="image/loading.gif" _src="image/p2.png"></li>
+  <li><img src="image/loading.gif" _src="image/p3.png"></li>
+  <li><img src="image/loading.gif" _src="image/p4.png"></li>
+  <li><img src="image/loading.gif" _src="image/p5.png"></li>
+  <li><img src="image/loading.gif" _src="image/p0.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p6.png"></li>
+  <li><img src="image/loading.gif" _src="image/p7.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p8.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p9.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p1.png"></li>
+  <li><img src="image/loading.gif" _src="image/p2.png"></li>
+  <li><img src="image/loading.gif" _src="image/p3.png"></li>
+  <li><img src="image/loading.gif" _src="image/p4.png"></li>
+  <li><img src="image/loading.gif" _src="image/p5.png"></li>
+  <li><img src="image/loading.gif" _src="image/p0.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p6.png"></li>
+  <li><img src="image/loading.gif" _src="image/p7.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p8.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p9.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p1.png"></li>
+  <li><img src="image/loading.gif" _src="image/p2.png"></li>
+  <li><img src="image/loading.gif" _src="image/p3.png"></li>
+  <li><img src="image/loading.gif" _src="image/p4.png"></li>
+  <li><img src="image/loading.gif" _src="image/p5.png"></li>
+  <li><img src="image/loading.gif" _src="image/p0.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p6.png"></li>
+  <li><img src="image/loading.gif" _src="image/p7.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p8.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p9.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p1.png"></li>
+  <li><img src="image/loading.gif" _src="image/p2.png"></li>
+  <li><img src="image/loading.gif" _src="image/p3.png"></li>
+  <li><img src="image/loading.gif" _src="image/p4.png"></li>
+  <li><img src="image/loading.gif" _src="image/p5.png"></li>
+  <li><img src="image/loading.gif" _src="image/p0.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p6.png"></li>
+  <li><img src="image/loading.gif" _src="image/p7.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p8.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p9.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p1.png"></li>
+  <li><img src="image/loading.gif" _src="image/p2.png"></li>
+  <li><img src="image/loading.gif" _src="image/p3.png"></li>
+  <li><img src="image/loading.gif" _src="image/p4.png"></li>
+  <li><img src="image/loading.gif" _src="image/p5.png"></li>
+  <li><img src="image/loading.gif" _src="image/p0.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p6.png"></li>
+  <li><img src="image/loading.gif" _src="image/p7.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p8.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p9.jpg"></li>
+  <li><img src="image/loading.gif" _src="image/p1.png"></li>
+  <li><img src="image/loading.gif" _src="image/p2.png"></li>
+  <li><img src="image/loading.gif" _src="image/p3.png"></li>
+  <li><img src="image/loading.gif" _src="image/p4.png"></li>
+  <li><img src="image/loading.gif" _src="image/p5.png"></li>
+</ul>
+</body>
+<script>
+window.onload=function(){
+	var oUl=document.getElementById("ul1");
+	var aLi=oUl.getElementsByTagName("li");
+	var oUl2=document.getElementById("ul2");
+	var aImg=oUl2.getElementsByTagName("img");
+	var oBtn=document.getElementById('btn');
+	//alert(aImg[2]._src)
+	var nowZindex=2;
+	function getTop(obj){
+		var iTop=0;
+		while(obj){
+			iTop+=obj.offsetTop;
+			obj=obj.offsetParent;
+		}
+		return iTop;
+	}
+	showImg();
+	window.onscroll=showImg;
+	function showImg(){
+		var oNav=document.getElementById("nav");
+		var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		for(var i=0;i<aImg.length;i++){
+			if(!aImg[i].bTrue&&getTop(aImg[i])<scrollTop+document.documentElement.clientHeight){
+				aImg[i].src=aImg[i].getAttribute('_src');
+				aImg[i].bTrue=true;
+			}
+		};
+		if(scrollTop>40){
+			oNav.style.position = 'fixed';
+			oNav.style.top = 0;
+			oNav.style.left=(document.documentElement.clientWidth-oNav.offsetWidth)/2+'px'
+		}else if(scrollTop<41){
+			oNav.style.position = 'absolute';
+			oNav.style.top=40+'px';
+		}
+	}
+	/*下面是布局转换*/
+	var aPos=[];
+	for(var i=0;i<aLi.length;i++){
+		aPos[i]={left:aLi[i].offsetLeft,top:aLi[i].offsetTop}
+	}
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin=0;
+		aLi[i].index=i;
+	}
+	
+	for(var i=0;i<aLi.length;i++){
+		setDrag(aLi[i]);
+	}
+	function setDrag(obj){
+		obj.onmousedown=function(e){
+			var e=e||event;
+			var disx=e.clientX-obj.offsetLeft;
+			var disy=e.clientY-obj.offsetTop;
+			this.style.zIndex=nowZindex++;
+			document.onmousemove=function(e){
+				var e=e||event;
+				obj.style.left=e.clientX-disx+'px';
+				obj.style.top=e.clientY-disy+'px';
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].className='';
+				}
+				var oNear=findSmall(obj);
+				if(oNear){
+					oNear.className='active';
+				}
+				return false;
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+				var temp=null;
+				var oNear=findSmall(obj);
+				if(oNear){
+					oNear.className='';
+					obj.style.zIndex=nowZindex++;
+					oNear.style.zIndex=nowZindex++;
+					move(oNear,aPos[obj.index])
+					move(obj,aPos[oNear.index])
+					temp=obj.index;
+					obj.index=oNear.index;
+					oNear.index=temp;
+				}else{
+					move(obj,aPos[obj.index])
+				}
+			}
+			clearInterval(obj.timer);
+			return false;
+		}
+		
+	}
+	function test(obj1,obj2){
+		var l1=obj1.offsetLeft;
+		var t1=obj1.offsetTop;
+		var r1=obj1.offsetLeft+obj1.offsetWidth;
+		var b1=obj1.offsetTop+obj1.offsetHeight;
+		
+		
+		var l2=obj2.offsetLeft;
+		var t2=obj2.offsetTop;
+		var r2=obj2.offsetLeft+obj2.offsetWidth;
+		var b2=obj2.offsetTop+obj2.offsetHeight;
+		if( r1<l2 || b1<t2 || l1>r2 || t1>b2){
+			return false;
+		}else {
+			return true;
+		}
+	}
+	function getDis(obj1,obj2){
+		var a=obj1.offsetLeft-obj2.offsetLeft;
+		var b=obj1.offsetTop-obj2.offsetTop;
+		return Math.sqrt(a*a+b*b);
+	}
+	
+	function findSmall(obj){
+		var iMin=999999;
+		var iMinIndex=-1;
+		for(var i=0;i<aLi.length;i++){
+			if(obj==aLi[i]) continue;
+			if(test(obj,aLi[i])){
+				var dis=getDis(obj,aLi[i])
+				if(dis<iMin){
+					iMin=dis;
+					iMinIndex=i;
+				}
+			}
+		}
+		if(iMinIndex==-1){
+			return null;
+		}else{
+			
+			return aLi[iMinIndex]
+		}
+	};
+
+	oBtn.onclick=function(){
+		var arr=[];
+		for(var i=0;i<aLi.length;i++){
+			arr.push(i);
+		}
+		arr.sort(function(){
+			return Math.random()-0.5;
+		})
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].index=arr[i];
+			move(aLi[i],aPos[arr[i]])
+		}
+	}
+}
+</script>
+</html>

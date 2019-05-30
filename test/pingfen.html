@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#ul1{width:200px;float:left;}
+#ul1 li{width:30px;height:30px;background:red;float:left;margin-right:4px;text-align:center;line-height:30px;cursor:pointer;list-style:none;}
+#ul1 li.active{background:blue;color:#FF0;}
+#tishi{margin-top:10px;clear:both;margin-left:60px;width:100px;height:30px;border:1px solid #999;text-align:center;line-height:30px;display:none;}
+#msg{width:200px;height:30px;line-height:30px;color:#F60;margin-top:10px;float:left;display:none;}
+</style>
+</head>
+
+<body>
+<ul id="ul1">
+ <li>★</li>
+ <li>★</li>
+ <li>★</li>
+ <li>★</li>
+ <li>★</li>
+</ul>
+<p id="tishi"></p>
+<div id="msg"></div>
+<script>
+window.onload=function(){
+	var oUl=document.getElementById("ul1");
+	var aLi=oUl.getElementsByTagName('li');
+	var oT=document.getElementById("tishi");
+	var oMsg=document.getElementById("msg");
+	var len=aLi.length;
+	var bTrue=true;
+	var num=0;
+	var arr=['太差了','一般吧','还可以','挺好的','值得推荐']
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].index=i;
+		aLi[i].onmouseover=function(){
+			oMsg.style.display='none';
+			oT.style.display='block';
+			oT.innerHTML=arr[this.index];
+			if(bTrue){
+				for(var i=0;i<=this.index;i++){
+					aLi[i].className='active';
+				}
+			}
+			num=this.index;
+		}
+		aLi[i].onmouseout=function(){
+			oT.style.display='none';
+			if(bTrue){
+				for(var i=0;i<len;i++){
+					aLi[i].className=''
+				}
+			}
+		}
+		aLi[i].onclick=function(){
+			oMsg.style.display='block';
+			oT.style.display='none';
+			oMsg.innerHTML=arr[num];
+			for(var i=0;i<=this.index;i++){
+				aLi[i].className='active';
+			}
+			bTrue=!bTrue;
+		}
+	}
+}
+</script>
+</body>
+</html>

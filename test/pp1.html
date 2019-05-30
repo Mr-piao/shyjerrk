@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>移动端</title>
+<meta name="viewport" content="width=device-width,user-scalable=no" >
+<style>
+*{margin:0;padding:0}
+li{list-style:none;}
+img{width:100%;display:block;float:left;}
+#box{width:100%;overflow:hidden;}
+#box ul{width:40rem;overflow:hidden;animation:2s linear;}
+#box ul li{width:10rem;float:left;}
+#box p{height:.6rem;text-align:center;}
+#box span{width:0.3rem;height:0.3rem;border-radius:0.1rem;border:1px solid #000;display:inline-block;line-height:0.3rem;vertical-align:top;margin-top:.1rem;}
+#box span.active{background:#f60;}
+</style>
+</head>
+<script>
+document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+'px';
+</script>
+
+<body>
+<div id="box">
+  <ul>
+    <li><img src="image/pp1.jpg" /></li>
+    <li><img src="image/pp2.jpg" /></li>
+    <li><img src="image/pp3.jpg" /></li>
+    <li><img src="image/pp4.jpg" /></li>
+  </ul>
+  <p>
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </p>
+</div>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById("box");
+	var oUl=oBox.getElementsByTagName('ul')[0];
+	var aLi=oUl.getElementsByTagName('li');
+	var aSpan=oBox.getElementsByTagName('span');
+	var iW=aLi[0].offsetWidth;
+	var xDown=0;//手指按下的位置
+	var xPic=0;//图片当前的位置
+	var xScroll=0;//图片要滚动的距离
+	var num=0;
+	var timer=null;
+	
+	oUl.addEventListener('touchstart',fnDown,false);
+	oUl.addEventListener('touchmove',fnMove,false);
+	oUl.addEventListener('touchend',fnEnd,false);
+		
+	function fnDown(e){
+		xDown=e.changedTouches[0].pageX;//手指按下的位置
+		xPic=xScroll;//图片当前的位置
+	}
+	function fnMove(e){
+		var disX=e.changedTouches[0].pageX-xDown;//手指当前位置和以前位置的差。
+		xScroll=xPic+disX;
+		oUl.style.WebkitTransform="translateX("+xScroll+"px)"
+		console.log(disX)
+	}
+	function fnEnd(e){
+		var disX=e.changedTouches[0].pageX-xDown;//手指当前位置和以前位置的差。
+		xScroll=xPic+disX;
+		num=xScroll/window.screen.width;
+		
+	}
+	timer=setInterval(function(){
+		num++;
+		num=num%aLi.length;
+		console.log(num)
+		autoPlay();
+	},2000)
+	function autoPlay(){
+		xScroll=-num*iW;
+		oUl.style.transition="1s";
+		oUl.style.WebkitTransform=oUl.style.transform="translateX("+xScroll+"px)";
+		for(var i=0;i<aSpan.length;i++){
+			aSpan[i].className=''
+		}
+		aSpan[num].className='active';
+		
+	}
+}
+</script>
+</body>
+</html>

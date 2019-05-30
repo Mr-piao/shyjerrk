@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{background:#666;}
+h2{text-align:center;color:yellow;}
+#can{background:#FFC;position:absolute;left:0;top:0;bottom:0;right:0;margin:auto;}
+</style>
+</head>
+
+<body>
+<h2>以下内容全部用CANVAS画的</h2>
+<canvas id="can" width="500" height="500"></canvas>
+</body>
+<script>
+window.onload=function(){
+	var oC=document.getElementById("can");
+	var oGc=oC.getContext('2d');
+	draw();
+	setInterval(draw,1000)
+	
+	
+	function draw(){
+		var x=250;
+		var y=250;
+		var r=150;
+		var oDate=new Date();
+		var oH=oDate.getHours();
+		var oM=oDate.getMinutes();
+		var oS=oDate.getSeconds();
+		var oHv=(-90+oH*30+oM/2)*Math.PI/180;
+		var oMv=(-90+oM*6)*Math.PI/180;
+		var oSv=(-90+oS*6)*Math.PI/180;
+		
+		
+		setInterval(function(){
+			function toZero(num){
+				if(num<9){
+					return '0'+num;
+				}else{
+					return ''+num;
+				}
+			}
+			var oDate=new Date();
+			var oHour=oDate.getHours();
+			var oMin=oDate.getMinutes();
+			var oSec=oDate.getSeconds();
+			document.title='时间：'+toZero(oHour)+':'+toZero(oMin)+':'+toZero(oSec)
+		},1000)
+		oGc.clearRect(0,0,oC.width,oC.height)
+		oGc.beginPath();
+		for(var i=0;i<60;i++){
+			oGc.moveTo(x,y);
+			oGc.arc(x,y,r,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false)
+		}
+		oGc.closePath();
+		oGc.stroke();
+		
+		oGc.beginPath();
+		oGc.fillStyle='#FFC';
+		oGc.arc(x,y,r*.95,0,360*Math.PI/180,false);
+		oGc.fill();
+		oGc.closePath();
+		
+		oGc.beginPath();
+		oGc.lineWidth=2;
+		for(var i=0;i<12;i++){
+			oGc.moveTo(x,y)
+			oGc.arc(x,y,r,30*i*Math.PI/180,30*(i+1)*Math.PI/180,false)
+		}
+		oGc.closePath();
+		oGc.stroke();
+		
+		oGc.beginPath();
+		oGc.fillStyle='#FFC';
+		oGc.arc(x,y,r*.88,0,360*Math.PI/180,false);
+		oGc.fill();
+		oGc.closePath;
+		
+		
+		oGc.beginPath();
+		oGc.lineWidth=4;
+		oGc.moveTo(x,y)
+		oGc.arc(x,y,r*.7,oHv,oHv,false);
+		oGc.closePath;
+		oGc.stroke();
+		
+		oGc.beginPath();
+		oGc.lineWidth=3;
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r*.79,oMv,oMv,false)
+		oGc.closePath();
+		oGc.stroke();
+		
+		oGc.beginPath();
+		oGc.lineWidth=1;
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r*.95,oSv,oSv,false)
+		oGc.closePath();
+		oGc.stroke();
+	}
+}
+</script>
+</html>

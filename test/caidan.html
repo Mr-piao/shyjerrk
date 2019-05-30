@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#warp{width:180px;margin:30px auto;-webkit-perspective:800px;-moz-perspective:800px;perspective:800px;position:relative;}
+#warp h3{width:100%;height:30px;background:#390;color:#fff;line-height:30px;font:Arial, Helvetica, sans-serif;text-align:center;border-radius:10px 10px 0 0;z-index:4;position:relative;cursor:pointer;}
+#warp h3:hover{color:yellow;}
+#warp div{position:absolute;top:32px;left:0;width:100%;-webkit-transform:preserve-3d;-moz-transform:preserve-3d;transform:preserve-3d;-webkit-transform-origin:top;-moz-transform-origin:top;transform-origin:top;-webkit-transform:rotateX(-130deg);-moz-transform:rotateX(-130deg);transform:rotateX(-130deg);}
+#warp div a{display:block;width:100%;height:30px;background:#660;color:#FF9;text-align:center;line-height:30px;text-decoration:none;}
+#warp>div{top:30px;}
+#warp .show{-webkit-animation:2s open;-moz-animation:2s open;animation:2s open;-webkit-transform:rotateX(0deg);-moz-transform:rotateX(0deg);transform:rotateX(0deg)};
+#wrap .hide{-webkit-animation:2s close;-moz-animation:2s close;animation:2s close;-webkit-transform:rotateX（-130deg）;-moz-transform:rotateX（-130deg）;transform:rotateX（-130deg）}
+@keyframes open{
+	0%{
+		-webkit-transform:rotateX(-120deg);
+		-moz-transform:rotateX(-120deg);
+		transform:rotateX(-120deg);
+	}
+	25%{
+		-webkit-transform:rotateX(30deg);
+		-moz-transform:rotateX(30deg);
+		transform:rotateX(30deg);
+	}
+	50%{
+		-webkit-transform:rotateX(-15deg);
+		-moz-transform:rotateX(-15deg);
+		transform:rotateX(-15deg);
+	}
+	75%{
+		-webkit-transform:rotateX(8deg);
+		-moz-transform:rotateX(8deg);
+		transform:rotateX(8deg);
+	}
+	100%{
+		-webkit-transform:rotateX(0deg);
+		-moz-transform:rotateX(0deg);
+		transform:rotateX(0deg);
+	}
+}
+@keyframes close{
+	0%{
+		-webkit-transform:rotateX(0deg);
+		-moz-transform:rotateX(0deg);
+		transform:rotateX(0deg);
+	}
+	100%{
+		-webkit-transform:rotateX(-130deg);
+		-moz-transform:rotateX(-130deg);
+		transform:rotateX(-130deg);
+	}
+}
+</style>
+</head>
+
+<body>
+<div id="warp">
+  <h3>点击此处展开</h3>
+  <div>
+    <a href="javascript:;">菜单一</a>
+    <div>
+       <a href="javascript:;">菜单二</a>
+       <div>
+          <a href="javascript:;">菜单三</a>
+          <div>
+             <a href="javascript:;">菜单四</a>
+             <div>
+                <a href="javascript:;">菜单五</a>
+                <div>
+                    <a href="javascript:;">菜单六</a>
+                    <div>
+                        <a href="javascript:;">菜单七</a>
+                    </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("warp");
+	var oBtn=oDiv.getElementsByTagName('h3')[0];
+	var aDiv=oDiv.getElementsByTagName("div");
+	var timer=null;
+	var onOff=true;
+	var num=0;
+	oBtn.onclick=function(){
+		if(timer){
+			return;
+		}
+		if(onOff){
+			timer=setInterval(function(){
+				aDiv[num].className='show';
+				num++;
+				if(num==aDiv.length){
+					clearInterval(timer);
+					oBtn.innerHTML='点击此处收缩';
+					onOff=!onOff;
+					timer=null;
+				}
+			},100)
+		}else{
+			num=aDiv.length-1;
+			timer=setInterval(function(){
+				aDiv[num].className='hide';
+				num--;
+				if(num<0){
+					clearInterval(timer);
+					oBtn.innerHTML='点击此处展开';
+					onOff=!onOff;
+					timer=null;
+					num=0;
+				}
+				
+			},100)
+		}
+		
+	}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>仿IPHONE</title>
+<style>
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+body { background: #333; }
+#iphone { width: 900px; height: 600px; background: url(img/bg.png); position: absolute; top: 50%; left: 50%; margin: -300px 0 0 -450px; }
+#wrap { width: 238px; height: 360px; position: absolute; top: 121px; left: 326px; overflow:hidden; }
+#iphone ul { width: 960px; height: 361px; cursor: pointer; position: absolute; top: 0px; left: 0px; }
+#iphone li { float: left; width:240px; height:360px; overflow:hidden; }
+#bg{background:url(img/iphonebg.jpg) no-repeat;width:240px;height:360px;position:relative;left:0;top:0;z-index:2}
+#lock{position:absolute;width:45px;height:31px;cursor:pointer;background:url(img/btn.jpg) no-repeat;top:310px;left:20px;}
+
+</style>
+</head>
+
+<body>
+
+<div id="iphone">
+	<div id="wrap">
+    	<div id="bg">
+        	<span id="lock"></span>
+        </div>
+		<ul>
+			<li style="background:url(img/pic1.png);" title="qq54467121"></li>
+			<li style="background:url(img/pic2.png);" title="qq54467121"></li>
+			<li style="background:url(img/pic3.png);" title="qq54467121"></li>
+			<li style="background:url(img/pic4.png);" title="qq54467121"></li>
+		</ul>
+	</div>
+</div>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById("wrap");
+	var oUl=oBox.getElementsByTagName("ul")[0];
+	var aLi=oUl.getElementsByTagName('li');
+	var oBg=document.getElementById("bg");
+	var oBtn=document.getElementById("lock");
+	var timer=null;
+	var speed=0;
+	var downx=0;
+	var timer1=null;
+	var speedx=0;
+	var num=0;
+	var l=0;
+	drag(oUl);
+	drag1(oBtn)
+	function move1(target){
+		clearInterval(timer1);
+		timer1=setInterval(function(){
+			speed+=(target-oBtn.offsetLeft)/7;
+			speed*=0.7;
+			oBtn.style.left=oBtn.offsetLeft+speed+'px';
+			if(oBtn.offsetLeft==176){
+				oBg.style.display='none';
+				oBtn.style.display='none';
+				oUl.style.left=0;
+			}
+			
+		},30)
+	}
+	function drag1(obj){
+		obj.onmousedown=function(e){
+			clearInterval(timer1)
+			var e=e||event;
+			var disx=e.clientX-obj.offsetLeft;
+			document.onmousemove=function(e){
+				var e=e||event;
+					l=e.clientX-disx;
+				if(l<20){
+					l=20;
+				}
+				if(l>=176){
+					l=176;
+				}
+				obj.style.left=l+'px';
+			}
+			document.onmouseup=function(){
+				if(l>110){
+					move1(176)
+				}else{
+					move1(20)
+				}
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+		}
+	}
+	function drag(obj){
+		var disx=0;
+		obj.onmousedown=function(e){
+			console.log(obj.offsetLeft)
+			var e=e||event;
+			downx=e.clientX;
+			disx=e.clientX-obj.offsetLeft;
+			clearInterval(timer)
+			document.onmousemove=function(e){
+				var e=e||event;
+				obj.style.left=e.clientX-disx+'px';
+				return false;
+			};
+			document.onmouseup=function(e){
+					var e=e||event;
+					document.onmousemove=null;
+					document.onmouseup=null;
+					if(e.clientX<downx){
+						if(num==aLi.length-1){
+							num=aLi.length-1;
+						}else{
+							num++;	
+						}
+						move(-num*aLi[0].offsetWidth-106,obj)
+					}else{
+						if(num==0){
+							num=0;
+						}else{
+							num--;	
+						}
+						move(-num*aLi[0].offsetWidth-105,obj)
+					}
+				}
+				return false;
+			}
+	}
+	function move(target,obj){
+		clearInterval(timer);
+		timer=setInterval(function(){
+			speed+=(target-obj.offsetLeft)/6;
+			speed*=0.75;
+			if(Math.abs(speed)<=1&&Math.abs(target-obj.offsetLeft)<=1){
+				clearInterval(timer);
+				speed=0;
+				obj.style.left=target+'px';
+			}else{
+				obj.style.left=obj.offsetLeft+speed+'px';
+			}
+		},30)
+	}
+	setTimeout(function(){
+		alert('请用鼠标去解锁啊')
+	},1500)
+}
+
+</script>
+</body>
+</html>

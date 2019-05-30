@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>js面向对像版贪吃蛇</title>
+<style>
+*{padding:0;margin:0;}
+#btn{border:1px solid #000;width:80px;height:40px;color:red;margin:240px auto auto 640px;cursor:pointer;text-align:center;line-height:40px;display:block;position:absolute;border-radius:50%;background:#693;color:#CF0;}
+#btn:hover{background:black;color:white;}
+.map{width:800px;height:600px;background:#660;margin:0 auto;position:relative}
+.food{background:#FFF;width:20px;height:20px;}
+#opt{margin:0 auto;display:block;width:100px;height:30px;text-indent:20px;background:#F60;font-size:20px;color:#fff;}
+#score{width:100px;height:30px;position:absolute;right:-110px;top:0px;background:#660;border:1px solid #F30;text-align:center;line-height:30px;font-size:20px;color:yellow}
+/*.snake{border:1px solid #666;}*/
+</style>
+</head>
+
+<body>
+<a id='btn'>开始</a>
+<select id='opt'>
+  <option value="400">慢速</option>
+  <option value="300">中速</option>
+  <option value="200">快速</option>
+</select>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById("btn");
+	var oPt=document.getElementById("opt");
+	var snake=new Game();
+	oBtn.onclick=function(){
+		var speed=0;
+		speed=oPt.value;
+		oPt.style.display='none';
+		this.style.display='none';
+		snake.init(speed);	
+	}
+	document.onkeydown=function(e){
+		var e=e||event;
+		switch(e.keyCode){
+			case 37:{
+				if(snake.defa=='right'){
+					break;
+				}
+				snake.defa='left';
+				break;
+			}
+			case 38:{
+				if(snake.defa=='down'){
+					break;
+				}
+				snake.defa='up';
+				break;
+			}
+			case 39:{
+				if(snake.defa=='left'){
+					break;
+				}
+				snake.defa='right';
+				break;
+			}
+			case 40:{
+				if(snake.defa=='up'){
+					break;
+				}
+				snake.defa='down';
+				break;
+			}
+		}
+	}
+}
+
+Game.prototype.init=function(speed){
+	var This=this;
+	this.timer=null;
+	this.createMap();
+	this.createFood();
+	this.createSnake();
+	this.timer=setInterval(this.snakeMove,speed);
+}
+Game.prototype.createSnake=function(){
+	//alert(this.oSpan.innerHTML)
+	var This=this;
+	this.w=20;
+	this.h=20;
+	for(var i=0;i<this.infor.length;i++){
+		    if(this.infor[i][3]==undefined){
+				this.infor[i][3]=document.createElement("div");
+				this.infor[i][3].style.width=This.w+'px';
+				this.infor[i][3].style.height=This.h+'px';
+				this.infor[i][3].className='snake'
+				this.infor[i][3].style.background=this.infor[i][2];
+				this.infor[i][3].style.position='absolute';
+			}
+		this.infor[i][3].style.left=this.infor[i][0]*This.w+'px';
+		this.infor[i][3].style.top=this.infor[i][1]*This.h+'px';
+		this.oMap.appendChild(this.infor[i][3]);
+	}
+}
+Game.prototype.createMap=function(){
+	this.oMap=document.createElement("div");
+	this.oMap.className='map';
+	document.body.appendChild(this.oMap);
+	var oDiv=document.createElement('div');
+	oDiv.id='score';
+	oDiv.innerHTML='<span>0</span>分';
+	this.oSpan=oDiv.getElementsByTagName('span')[0];
+	this.oMap.appendChild(oDiv)
+}
+Game.prototype.createFood=function(){
+	this.food=document.createElement('div');
+	//this.food.className='food';
+	this.w=20;
+	this.h=20;
+	this.food.style.background='yellow';
+	this.food.style.width=this.w+'px';
+	this.food.style.height=this.h+'px';
+	this.food.style.position='absolute';
+	this.food.style.left=Math.floor(Math.random()*40)*this.w+'px';
+	this.food.style.top=Math.floor(Math.random()*30)*this.h+'px';
+	
+	this.oMap.appendChild(this.food);
+	
+	this.foodx=this.food.offsetLeft;
+	this.foody=this.food.offsetTop;
+	
+	//console.log(this.foodx);
+	//console.log(this.foody);
+}
+Game.prototype.eatFood=function(){
+	this.snakex=(this.infor[this.infor.length-1][0])*20;
+	this.snakey=(this.infor[this.infor.length-1][1])*20;
+	
+		if(this.snakex>780){
+			clearInterval(this.timer)
+			alert('你输了，得分是'+this.oSpan.innerHTML+'分');
+			window.location.reload();
+		}else if(this.snakex<0){
+			clearInterval(this.timer)
+			alert('你输了，得分是'+this.oSpan.innerHTML+'分');
+			window.location.reload();
+		}
+		if(this.snakey>580){
+			clearInterval(this.timer)
+			alert('你输了，得分是'+this.oSpan.innerHTML+'分');
+			window.location.reload();
+		}else if(this.snakey<0){
+			clearInterval(this.timer)
+			alert('你输了，得分是'+this.oSpan.innerHTML+'分');
+			window.location.reload();
+		}
+	//console.log(this.snakex)//39
+	//console.log(this.snakey)//29
+	if(this.snakex==this.foodx&&this.snakey==this.foody){
+		var newFood=[this.infor[0][0],this.infor[0][1],'orange',null];
+		this.infor.unshift(newFood);
+		this.oMap.removeChild(this.food)
+		this.oSpan.innerHTML=parseInt(this.oSpan.innerHTML)+5;
+		this.createFood();
+	}
+}
+function Game(){
+	var This=this;
+	this.defa='right';
+	//小蛇的信息
+	this.infor=[[0,0,'orange',null],[1,0,'orange',null],[2,0,'orange',null],[3,0,'#F60',null]];
+	this.snakeMove=function(){
+		for(var i=0;i<This.infor.length-1;i++){
+			This.infor[i][0]=This.infor[i+1][0];
+			This.infor[i][1]=This.infor[i+1][1];
+		}
+		if(This.defa=='left'){
+			This.infor[This.infor.length-1][0]-=1;
+		}
+		if(This.defa=='up'){
+			This.infor[This.infor.length-1][1]-=1;
+		}
+		if(This.defa=='right'){
+			This.infor[This.infor.length-1][0]+=1;
+		}
+		if(This.defa=='down'){
+			This.infor[This.infor.length-1][1]+=1;
+		}
+		This.createSnake();
+		This.eatFood();
+		for(var i=0;i<This.infor.length-1;i++){
+			if((This.infor[This.infor.length-1][0]==This.infor[i][0])&&(This.infor[This.infor.length-1][1]==This.infor[i][1])){
+				alert('饿成什么样，自己都吃，才得'+This.oSpan.innerHTML+'分');
+				window.location.reload();
+			}
+		}
+	}
+}
+</script>
+</body>
+</html>
